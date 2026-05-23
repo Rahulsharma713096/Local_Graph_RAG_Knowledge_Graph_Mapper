@@ -1,0 +1,8 @@
+1. Click button process buffer should show when i click dissconnect button or add sources button  action happens after some time but user not find butten clicked after cilc there is button buffering show.
+2. when i sewlect nay mode the select on that model shuld be change to selected and green colcor same model.
+3. Recheck Pipline logic becuase not run and implement pallel procesing in pipline perocess.
+4.in Pipline there are 4 pipline shows but active piupline in dashbaord 0 showing recheck logic.
+5.Ollama Modles section showing pull button : what is that need this scetion only show which model alredy present in system then what is use of pull button remove it, Select Model functionaity also not working.
+6. Query Console bussiness logic not wokring, is shows error "'NoneType' object has no attribute 'strip'" add logger in this section put error logs in this folder.
+7. Re-check Buessines logic again the bacend code not working as per rquriment.
+8. test.txt file contains some failed testcases implement this also.

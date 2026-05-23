@@ -1,0 +1,96 @@
+================================================================================
+  GraphRAG Backend API - Defect Report
+  Generated: 2026-05-23
+================================================================================
+
+SUMMARY
+-------
+Total Endpoints Tested: 15
+Passed: 9
+Failed:  6
+Pass Rate: 60%
+
+================================================================================
+DEFECTS FOUND
+================================================================================
+
+DEFECT 1 [CRITICAL] - Cypher Query Execution Returns 500 Internal Server Error
+--------------------------------------------------------------------------------
+Endpoint:  POST /api/graph/cypher
+Request:   {"query": "MATCH (n) RETURN n LIMIT 5"}
+Response:  "Internal Server Error"
+Expected:  200 OK with query results
+Root Cause: Neo4j database is not running / unavailable. Dashboard health
+            confirms: {"neo4j": "unhealthy"}. The graph_service.py tries to
+            connect to Neo4j and crashes when the connection fails.
+Impact:    All graph-related features are broken (graph view, graph stats,
+           cypher queries, pipelines, seed data).
+
+DEFECT 2 [CRITICAL] - Seed Data Creates 0 Nodes
+--------------------------------------------------------------------------------
+Endpoint:  POST /api/seed
+Request:   {}
+Response:  {"message":"Demo data seeded successfully","nodes_created":0}
+Expected:  >0 nodes created
+Root Cause: Neo4j is unavailable, so seed data cannot be written to the graph.
+Impact:    No demo data available for testing the UI.
+
+DEFECT 3 [HIGH] - All Pipelines Stuck on "running" Status
+--------------------------------------------------------------------------------
+Endpoint:  GET /api/pipelines
+Response:  4 pipelines all show {"status":"running","progress":0.0}
+Root Cause: Pipelines depend on Neo4j for graph operations. Since Neo4j is
+            unavailable, pipeline execution hangs permanently.
+Impact:    Pipeline feature is completely non-functional.
+
+DEFECT 4 [HIGH] - Query Processing Error for Empty/Invalid Queries
+--------------------------------------------------------------------------------
+Endpoint:  POST /api/query (or query processing internally)
+Evidence:  Multiple query history entries show:
+           "answer": "Query processing error: 'NoneType' object has no attribute 'strip'"
+Root Cause: The RAG service or query processing code doesn't handle None values
+            for query/natural_query inputs before calling .strip() on them.
+Impact:    Queries with empty or malformed input cause unhandled exceptions.
+
+DEFECT 5 [MEDIUM] - Model Selection Succeeds for Non-Existent Model
+--------------------------------------------------------------------------------
+Endpoint:  POST /api/ollama/models/select
+Request:   {"model_name": "llama3.1"}
+Response:  {"message":"Model llama3.1 selected","model":"llama3.1"}
+Available Models: phi3:mini, llama3:latest, qwen2.5-coder:3b, deepseek-r1:1.5b
+Root Cause: The select endpoint does not validate that the requested model
+            actually exists in the available models list.
+Impact:    Users can select models that don't exist, leading to silent failures
+           when querying.
+
+DEFECT 6 [LOW] - Empty Cypher Query Returns 200 With Error Message Rather Than 4xx
+--------------------------------------------------------------------------------
+Endpoint:  POST /api/graph/cypher
+Request:   {"query": ""}
+Response:  {"detail":"Cypher query is required"} (200 OK status)
+Expected:  400 Bad Request with proper error message
+Root Cause: The endpoint handles empty queries informatively, but returns HTTP
+            200 instead of a 4xx status code, which is non-standard REST
+            behavior.
+Impact:    Minor REST API convention violation.
+
+================================================================================
+HEALTH CHECK RESULTS
+================================================================================
+Backend:  healthy
+Neo4j:    unhealthy  <-- Root cause of multiple defects
+Ollama:   healthy
+
+================================================================================
+RECOMMENDATIONS
+================================================================================
+1. Start Neo4j database before running the backend application.
+2. Add graceful error handling in graph_service.py when Neo4j is unavailable,
+   returning proper error messages instead of 500 Internal Server Error.
+3. Add null-check in the query processing pipeline before calling .strip().
+4. Add model existence validation in the model selection endpoint.
+5. Fix pipeline execution to handle Neo4j unavailability gracefully.
+6. Consider adding a startup dependency check that warns if Neo4j is not running.
+================================================================================
+Test performed by: automated backend API test suite
+Target: http://localhost:8000

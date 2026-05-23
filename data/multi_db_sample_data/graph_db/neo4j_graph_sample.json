@@ -1,0 +1,631 @@
+{
+  "nodes": [
+    {
+      "id": "72807218-1708-4771-b9e7-82364088d3c1",
+      "label": "Person",
+      "properties": {
+        "name": "Reginald Cordova",
+        "email": "humphreyjesse@example.org",
+        "company": "Smith, Dougherty and Wilcox"
+      }
+    },
+    {
+      "id": "d70beaf8-121e-4530-82e6-7061be88f81d",
+      "label": "Person",
+      "properties": {
+        "name": "Christopher Stone",
+        "email": "mallory05@example.org",
+        "company": "Anthony, Gomez and Weeks"
+      }
+    },
+    {
+      "id": "53fa0642-1229-444d-bc78-addc1dd2d3dc",
+      "label": "Person",
+      "properties": {
+        "name": "Carl Long",
+        "email": "mary21@example.com",
+        "company": "Reed-Vaughn"
+      }
+    },
+    {
+      "id": "b0b9ab3c-0a4a-4622-a9ce-54a4ab3f17eb",
+      "label": "Person",
+      "properties": {
+        "name": "Meagan Contreras",
+        "email": "afigueroa@example.net",
+        "company": "Poole-Mcconnell"
+      }
+    },
+    {
+      "id": "d8f73a88-bca6-414b-8beb-f4d7897be63e",
+      "label": "Person",
+      "properties": {
+        "name": "Alyssa Watson",
+        "email": "angela23@example.net",
+        "company": "Levine-Oconnell"
+      }
+    },
+    {
+      "id": "cce04c64-3876-4912-8995-9fdff548ff6b",
+      "label": "Person",
+      "properties": {
+        "name": "Mr. Kevin Jackson",
+        "email": "martinezjohn@example.org",
+        "company": "Goodwin-Francis"
+      }
+    },
+    {
+      "id": "31682563-c6ac-4a3a-8fec-878ab4ba9b46",
+      "label": "Person",
+      "properties": {
+        "name": "Steven Bishop",
+        "email": "mccoyjulie@example.com",
+        "company": "Torres, Wood and Black"
+      }
+    },
+    {
+      "id": "3cf9e44b-33ba-4fb0-a600-fb1dde2391d2",
+      "label": "Person",
+      "properties": {
+        "name": "Andrew Brown",
+        "email": "danielgriffin@example.org",
+        "company": "Hogan-Schwartz"
+      }
+    },
+    {
+      "id": "38f4c28a-e5e7-4104-bd61-f841446516d2",
+      "label": "Person",
+      "properties": {
+        "name": "Preston Dixon",
+        "email": "katrinamurphy@example.com",
+        "company": "Christian, Pratt and Hamilton"
+      }
+    },
+    {
+      "id": "6a02bbad-28d3-4f49-b955-bc0d9ed2a14f",
+      "label": "Person",
+      "properties": {
+        "name": "Yesenia Adams",
+        "email": "luis79@example.com",
+        "company": "Soto-Smith"
+      }
+    },
+    {
+      "id": "a23c0192-75c2-4597-a413-74d5f46c2b29",
+      "label": "Person",
+      "properties": {
+        "name": "Kristen Anderson",
+        "email": "hfoster@example.com",
+        "company": "Wong, Marshall and Downs"
+      }
+    },
+    {
+      "id": "226fd27a-196a-4271-86c3-13e99f80a200",
+      "label": "Person",
+      "properties": {
+        "name": "Paul Lynn",
+        "email": "joshua12@example.org",
+        "company": "Smith, Sandoval and Grant"
+      }
+    },
+    {
+      "id": "5d8a7a32-7ec4-4e18-ad1e-239fa0679073",
+      "label": "Person",
+      "properties": {
+        "name": "Heather Guerrero",
+        "email": "rachelwilliams@example.net",
+        "company": "Lutz Inc"
+      }
+    },
+    {
+      "id": "8f46d202-a21d-4b6b-85f7-dd13a671e185",
+      "label": "Person",
+      "properties": {
+        "name": "Brittany Green",
+        "email": "kellyherrera@example.com",
+        "company": "Frey-Thomas"
+      }
+    },
+    {
+      "id": "686c995b-b153-4542-8a9a-71ccfdc328e1",
+      "label": "Person",
+      "properties": {
+        "name": "Amy Ramsey",
+        "email": "istark@example.net",
+        "company": "Johnson, Martinez and Blair"
+      }
+    },
+    {
+      "id": "aa52b457-41dc-4b4b-b27c-4fd0a09b4e26",
+      "label": "Person",
+      "properties": {
+        "name": "Jonathan Mason",
+        "email": "burtonkaren@example.org",
+        "company": "Colon-Garcia"
+      }
+    },
+    {
+      "id": "509b6620-80bf-4b71-9f04-e3e4d997c8c3",
+      "label": "Person",
+      "properties": {
+        "name": "Christopher Strickland",
+        "email": "jaycollins@example.net",
+        "company": "Luna LLC"
+      }
+    },
+    {
+      "id": "b87ba02b-9d9c-459e-9656-44bd2569ec5c",
+      "label": "Person",
+      "properties": {
+        "name": "Valerie Hart",
+        "email": "nichole74@example.net",
+        "company": "Salinas Inc"
+      }
+    },
+    {
+      "id": "ff60b70f-4583-453a-bbbb-6f2a4b6fd883",
+      "label": "Person",
+      "properties": {
+        "name": "Tammy Carter",
+        "email": "amooney@example.net",
+        "company": "James Ltd"
+      }
+    },
+    {
+      "id": "c2f31a64-248c-4040-a0f1-72b18e1e33b9",
+      "label": "Person",
+      "properties": {
+        "name": "Jennifer Jordan",
+        "email": "villarrealkathy@example.org",
+        "company": "Martin-Miller"
+      }
+    },
+    {
+      "id": "7e271f1b-250f-440c-acdc-ef16094aa218",
+      "label": "Person",
+      "properties": {
+        "name": "Tonya Gibson",
+        "email": "ifrye@example.org",
+        "company": "Smith-Bright"
+      }
+    },
+    {
+      "id": "27da7ca3-6770-4f45-ae42-862188a1d82d",
+      "label": "Person",
+      "properties": {
+        "name": "Stephen Cunningham",
+        "email": "mark06@example.com",
+        "company": "Perez Inc"
+      }
+    },
+    {
+      "id": "01b79d40-71ab-440e-a9c9-2add272c5f34",
+      "label": "Person",
+      "properties": {
+        "name": "Angelica Mendoza",
+        "email": "grossjared@example.org",
+        "company": "Cruz-Mooney"
+      }
+    },
+    {
+      "id": "11b9dbaf-2556-4817-a0be-08069ebb3294",
+      "label": "Person",
+      "properties": {
+        "name": "Jason Bailey",
+        "email": "kmalone@example.org",
+        "company": "Browning LLC"
+      }
+    },
+    {
+      "id": "a37563cc-0b37-4e3d-bf58-5962505242fe",
+      "label": "Person",
+      "properties": {
+        "name": "Rhonda Berry",
+        "email": "julieevans@example.com",
+        "company": "Moore-Patel"
+      }
+    }
+  ],
+  "relationships": [
+    {
+      "start": "11b9dbaf-2556-4817-a0be-08069ebb3294",
+      "end": "38f4c28a-e5e7-4104-bd61-f841446516d2",
+      "type": "KNOWS",
+      "properties": {
+        "since": 2022
+      }
+    },
+    {
+      "start": "5d8a7a32-7ec4-4e18-ad1e-239fa0679073",
+      "end": "a37563cc-0b37-4e3d-bf58-5962505242fe",
+      "type": "WORKS_WITH",
+      "properties": {
+        "since": 2019
+      }
+    },
+    {
+      "start": "01b79d40-71ab-440e-a9c9-2add272c5f34",
+      "end": "d8f73a88-bca6-414b-8beb-f4d7897be63e",
+      "type": "MANAGES",
+      "properties": {
+        "since": 2015
+      }
+    },
+    {
+      "start": "aa52b457-41dc-4b4b-b27c-4fd0a09b4e26",
+      "end": "3cf9e44b-33ba-4fb0-a600-fb1dde2391d2",
+      "type": "WORKS_WITH",
+      "properties": {
+        "since": 2025
+      }
+    },
+    {
+      "start": "72807218-1708-4771-b9e7-82364088d3c1",
+      "end": "a23c0192-75c2-4597-a413-74d5f46c2b29",
+      "type": "MANAGES",
+      "properties": {
+        "since": 2024
+      }
+    },
+    {
+      "start": "aa52b457-41dc-4b4b-b27c-4fd0a09b4e26",
+      "end": "b87ba02b-9d9c-459e-9656-44bd2569ec5c",
+      "type": "WORKS_WITH",
+      "properties": {
+        "since": 2019
+      }
+    },
+    {
+      "start": "a23c0192-75c2-4597-a413-74d5f46c2b29",
+      "end": "aa52b457-41dc-4b4b-b27c-4fd0a09b4e26",
+      "type": "MANAGES",
+      "properties": {
+        "since": 2024
+      }
+    },
+    {
+      "start": "b87ba02b-9d9c-459e-9656-44bd2569ec5c",
+      "end": "31682563-c6ac-4a3a-8fec-878ab4ba9b46",
+      "type": "WORKS_WITH",
+      "properties": {
+        "since": 2024
+      }
+    },
+    {
+      "start": "c2f31a64-248c-4040-a0f1-72b18e1e33b9",
+      "end": "b0b9ab3c-0a4a-4622-a9ce-54a4ab3f17eb",
+      "type": "MANAGES",
+      "properties": {
+        "since": 2015
+      }
+    },
+    {
+      "start": "11b9dbaf-2556-4817-a0be-08069ebb3294",
+      "end": "31682563-c6ac-4a3a-8fec-878ab4ba9b46",
+      "type": "MANAGES",
+      "properties": {
+        "since": 2018
+      }
+    },
+    {
+      "start": "5d8a7a32-7ec4-4e18-ad1e-239fa0679073",
+      "end": "8f46d202-a21d-4b6b-85f7-dd13a671e185",
+      "type": "KNOWS",
+      "properties": {
+        "since": 2019
+      }
+    },
+    {
+      "start": "38f4c28a-e5e7-4104-bd61-f841446516d2",
+      "end": "31682563-c6ac-4a3a-8fec-878ab4ba9b46",
+      "type": "WORKS_WITH",
+      "properties": {
+        "since": 2019
+      }
+    },
+    {
+      "start": "72807218-1708-4771-b9e7-82364088d3c1",
+      "end": "72807218-1708-4771-b9e7-82364088d3c1",
+      "type": "REPORTS_TO",
+      "properties": {
+        "since": 2016
+      }
+    },
+    {
+      "start": "226fd27a-196a-4271-86c3-13e99f80a200",
+      "end": "686c995b-b153-4542-8a9a-71ccfdc328e1",
+      "type": "WORKS_WITH",
+      "properties": {
+        "since": 2022
+      }
+    },
+    {
+      "start": "7e271f1b-250f-440c-acdc-ef16094aa218",
+      "end": "5d8a7a32-7ec4-4e18-ad1e-239fa0679073",
+      "type": "WORKS_WITH",
+      "properties": {
+        "since": 2024
+      }
+    },
+    {
+      "start": "686c995b-b153-4542-8a9a-71ccfdc328e1",
+      "end": "a37563cc-0b37-4e3d-bf58-5962505242fe",
+      "type": "MANAGES",
+      "properties": {
+        "since": 2016
+      }
+    },
+    {
+      "start": "38f4c28a-e5e7-4104-bd61-f841446516d2",
+      "end": "686c995b-b153-4542-8a9a-71ccfdc328e1",
+      "type": "MANAGES",
+      "properties": {
+        "since": 2018
+      }
+    },
+    {
+      "start": "01b79d40-71ab-440e-a9c9-2add272c5f34",
+      "end": "c2f31a64-248c-4040-a0f1-72b18e1e33b9",
+      "type": "REPORTS_TO",
+      "properties": {
+        "since": 2019
+      }
+    },
+    {
+      "start": "cce04c64-3876-4912-8995-9fdff548ff6b",
+      "end": "ff60b70f-4583-453a-bbbb-6f2a4b6fd883",
+      "type": "WORKS_WITH",
+      "properties": {
+        "since": 2020
+      }
+    },
+    {
+      "start": "72807218-1708-4771-b9e7-82364088d3c1",
+      "end": "b0b9ab3c-0a4a-4622-a9ce-54a4ab3f17eb",
+      "type": "KNOWS",
+      "properties": {
+        "since": 2020
+      }
+    },
+    {
+      "start": "b87ba02b-9d9c-459e-9656-44bd2569ec5c",
+      "end": "aa52b457-41dc-4b4b-b27c-4fd0a09b4e26",
+      "type": "MANAGES",
+      "properties": {
+        "since": 2017
+      }
+    },
+    {
+      "start": "a23c0192-75c2-4597-a413-74d5f46c2b29",
+      "end": "11b9dbaf-2556-4817-a0be-08069ebb3294",
+      "type": "REPORTS_TO",
+      "properties": {
+        "since": 2023
+      }
+    },
+    {
+      "start": "72807218-1708-4771-b9e7-82364088d3c1",
+      "end": "7e271f1b-250f-440c-acdc-ef16094aa218",
+      "type": "REPORTS_TO",
+      "properties": {
+        "since": 2025
+      }
+    },
+    {
+      "start": "a23c0192-75c2-4597-a413-74d5f46c2b29",
+      "end": "5d8a7a32-7ec4-4e18-ad1e-239fa0679073",
+      "type": "WORKS_WITH",
+      "properties": {
+        "since": 2020
+      }
+    },
+    {
+      "start": "c2f31a64-248c-4040-a0f1-72b18e1e33b9",
+      "end": "a37563cc-0b37-4e3d-bf58-5962505242fe",
+      "type": "KNOWS",
+      "properties": {
+        "since": 2025
+      }
+    },
+    {
+      "start": "6a02bbad-28d3-4f49-b955-bc0d9ed2a14f",
+      "end": "a23c0192-75c2-4597-a413-74d5f46c2b29",
+      "type": "KNOWS",
+      "properties": {
+        "since": 2023
+      }
+    },
+    {
+      "start": "d70beaf8-121e-4530-82e6-7061be88f81d",
+      "end": "11b9dbaf-2556-4817-a0be-08069ebb3294",
+      "type": "WORKS_WITH",
+      "properties": {
+        "since": 2022
+      }
+    },
+    {
+      "start": "53fa0642-1229-444d-bc78-addc1dd2d3dc",
+      "end": "53fa0642-1229-444d-bc78-addc1dd2d3dc",
+      "type": "WORKS_WITH",
+      "properties": {
+        "since": 2017
+      }
+    },
+    {
+      "start": "b0b9ab3c-0a4a-4622-a9ce-54a4ab3f17eb",
+      "end": "509b6620-80bf-4b71-9f04-e3e4d997c8c3",
+      "type": "WORKS_WITH",
+      "properties": {
+        "since": 2018
+      }
+    },
+    {
+      "start": "53fa0642-1229-444d-bc78-addc1dd2d3dc",
+      "end": "a37563cc-0b37-4e3d-bf58-5962505242fe",
+      "type": "MANAGES",
+      "properties": {
+        "since": 2020
+      }
+    },
+    {
+      "start": "a23c0192-75c2-4597-a413-74d5f46c2b29",
+      "end": "53fa0642-1229-444d-bc78-addc1dd2d3dc",
+      "type": "REPORTS_TO",
+      "properties": {
+        "since": 2020
+      }
+    },
+    {
+      "start": "a37563cc-0b37-4e3d-bf58-5962505242fe",
+      "end": "53fa0642-1229-444d-bc78-addc1dd2d3dc",
+      "type": "REPORTS_TO",
+      "properties": {
+        "since": 2021
+      }
+    },
+    {
+      "start": "b87ba02b-9d9c-459e-9656-44bd2569ec5c",
+      "end": "d70beaf8-121e-4530-82e6-7061be88f81d",
+      "type": "REPORTS_TO",
+      "properties": {
+        "since": 2025
+      }
+    },
+    {
+      "start": "5d8a7a32-7ec4-4e18-ad1e-239fa0679073",
+      "end": "01b79d40-71ab-440e-a9c9-2add272c5f34",
+      "type": "WORKS_WITH",
+      "properties": {
+        "since": 2023
+      }
+    },
+    {
+      "start": "53fa0642-1229-444d-bc78-addc1dd2d3dc",
+      "end": "31682563-c6ac-4a3a-8fec-878ab4ba9b46",
+      "type": "REPORTS_TO",
+      "properties": {
+        "since": 2017
+      }
+    },
+    {
+      "start": "b0b9ab3c-0a4a-4622-a9ce-54a4ab3f17eb",
+      "end": "a37563cc-0b37-4e3d-bf58-5962505242fe",
+      "type": "MANAGES",
+      "properties": {
+        "since": 2018
+      }
+    },
+    {
+      "start": "3cf9e44b-33ba-4fb0-a600-fb1dde2391d2",
+      "end": "d70beaf8-121e-4530-82e6-7061be88f81d",
+      "type": "KNOWS",
+      "properties": {
+        "since": 2015
+      }
+    },
+    {
+      "start": "7e271f1b-250f-440c-acdc-ef16094aa218",
+      "end": "01b79d40-71ab-440e-a9c9-2add272c5f34",
+      "type": "WORKS_WITH",
+      "properties": {
+        "since": 2022
+      }
+    },
+    {
+      "start": "d70beaf8-121e-4530-82e6-7061be88f81d",
+      "end": "d70beaf8-121e-4530-82e6-7061be88f81d",
+      "type": "WORKS_WITH",
+      "properties": {
+        "since": 2018
+      }
+    },
+    {
+      "start": "d8f73a88-bca6-414b-8beb-f4d7897be63e",
+      "end": "d8f73a88-bca6-414b-8beb-f4d7897be63e",
+      "type": "MANAGES",
+      "properties": {
+        "since": 2020
+      }
+    },
+    {
+      "start": "5d8a7a32-7ec4-4e18-ad1e-239fa0679073",
+      "end": "a37563cc-0b37-4e3d-bf58-5962505242fe",
+      "type": "REPORTS_TO",
+      "properties": {
+        "since": 2015
+      }
+    },
+    {
+      "start": "509b6620-80bf-4b71-9f04-e3e4d997c8c3",
+      "end": "a37563cc-0b37-4e3d-bf58-5962505242fe",
+      "type": "MANAGES",
+      "properties": {
+        "since": 2022
+      }
+    },
+    {
+      "start": "72807218-1708-4771-b9e7-82364088d3c1",
+      "end": "27da7ca3-6770-4f45-ae42-862188a1d82d",
+      "type": "REPORTS_TO",
+      "properties": {
+        "since": 2023
+      }
+    },
+    {
+      "start": "53fa0642-1229-444d-bc78-addc1dd2d3dc",
+      "end": "d70beaf8-121e-4530-82e6-7061be88f81d",
+      "type": "WORKS_WITH",
+      "properties": {
+        "since": 2024
+      }
+    },
+    {
+      "start": "d70beaf8-121e-4530-82e6-7061be88f81d",
+      "end": "31682563-c6ac-4a3a-8fec-878ab4ba9b46",
+      "type": "WORKS_WITH",
+      "properties": {
+        "since": 2024
+      }
+    },
+    {
+      "start": "aa52b457-41dc-4b4b-b27c-4fd0a09b4e26",
+      "end": "72807218-1708-4771-b9e7-82364088d3c1",
+      "type": "MANAGES",
+      "properties": {
+        "since": 2016
+      }
+    },
+    {
+      "start": "ff60b70f-4583-453a-bbbb-6f2a4b6fd883",
+      "end": "226fd27a-196a-4271-86c3-13e99f80a200",
+      "type": "WORKS_WITH",
+      "properties": {
+        "since": 2021
+      }
+    },
+    {
+      "start": "31682563-c6ac-4a3a-8fec-878ab4ba9b46",
+      "end": "d8f73a88-bca6-414b-8beb-f4d7897be63e",
+      "type": "KNOWS",
+      "properties": {
+        "since": 2025
+      }
+    },
+    {
+      "start": "11b9dbaf-2556-4817-a0be-08069ebb3294",
+      "end": "c2f31a64-248c-4040-a0f1-72b18e1e33b9",
+      "type": "MANAGES",
+      "properties": {
+        "since": 2019
+      }
+    },
+    {
+      "start": "b87ba02b-9d9c-459e-9656-44bd2569ec5c",
+      "end": "226fd27a-196a-4271-86c3-13e99f80a200",
+      "type": "REPORTS_TO",
+      "properties": {
+        "since": 2017
+      }
+    }
+  ]
+}

@@ -1,0 +1,446 @@
+# CLI Prompt — Local Graph RAG & Knowledge Graph Mapper
+
+## Master Prompt
+
+```text
+You are a senior full-stack AI systems architect and developer.
+
+Create a production-grade local-first application called:
+
+"Local Graph RAG & Knowledge Graph Mapper"
+
+The system must include:
+- FastAPI backend
+- React + TypeScript frontend
+- Neo4j graph database
+- FAISS vector store
+- sentence-transformers embeddings
+- spaCy NER pipeline
+- Ollama local LLM integration(Based on system ollama may be slow then buffering functionalty should implemeted)
+- Cytoscape.js or D3.js graph visualization
+- Dockerized local deployment
+- Modular scalable architecture
+- Real-time dashboard UI
+- Fully working CLI bootstrapper
+
+====================================================
+PROJECT GOAL
+====================================================
+
+Build a local AI-powered Graph RAG platform that:
+- Connects to SQL/CSV data sources
+- Extracts entities and relationships
+- Builds a Neo4j knowledge graph
+- Generates embeddings and FAISS indexes
+- Enables natural-language querying
+- Retrieves graph-aware context
+- Uses Ollama for local inference
+- Displays a live interactive knowledge graph dashboard
+
+====================================================
+CORE FEATURES
+====================================================
+
+1. DATABASE CONNECTORS
+- PostgreSQL
+- MySQL
+- SQLite
+- CSV ingestion
+- Connection validation
+- Incremental sync support
+- Schema auto-detection
+
+2. ETL + KNOWLEDGE GRAPH PIPELINE
+Pipeline stages:
+- Extract
+- Normalize
+- Entity extraction
+- Relationship mapping
+- Embedding generation
+- FAISS indexing
+- Community detection
+- Neo4j graph creation
+
+3. GRAPH RAG ENGINE
+- Hybrid graph + vector retrieval
+- Context expansion traversal
+- Cypher generation
+- Semantic search
+- Graph neighborhood ranking
+- Multi-hop traversal
+
+4. OLLAMA INTEGRATION
+Auto-detect local Ollama installation.
+Display available models.
+Support:
+- llama3.1
+- mistral
+- phi3
+- codellama
+- gemma
+- deepseek
+
+Provide:
+- VRAM estimation
+- Context size
+- Speed score
+- RAG suitability score
+
+5. LIVE KNOWLEDGE GRAPH UI
+Animated graph visualization with:
+- Floating nodes
+- Edge labels
+- Node filtering
+- Search
+- Zoom/pan
+- Physics simulation
+- Live graph updates
+
+Node examples:
+- Customer
+- Product
+- Order
+- Supplier
+- Employee
+
+6. QUERY CONSOLE
+Natural language query interface.
+Pipeline visualization:
+- Embed query
+- Retrieve graph context
+- Generate Cypher
+- Execute graph search
+- Generate answer
+
+Add:
+- Traversal depth control
+- Query scope selector
+- Terminal-style logs
+- Query execution timeline
+
+7. SYSTEM DASHBOARD
+Show:
+- CPU usage
+- RAM usage
+- GPU usage
+- Neo4j heap usage
+- Active pipelines
+- Query history
+- Connected databases
+- Indexing progress
+
+====================================================
+FRONTEND REQUIREMENTS
+====================================================
+
+Use:
+- React
+- TypeScript
+- TailwindCSS
+- Framer Motion
+- Zustand or Redux
+- Recharts
+- Cytoscape.js
+- shadcn/ui
+
+Create these tabs:
+
+1. Architecture
+2. Pipeline
+3. Graph View
+4. Ollama Models
+5. Query Console
+6. Dashboard
+
+====================================================
+ARCHITECTURE TAB
+====================================================
+
+Include:
+- Full animated system flow diagram
+- SQL → ETL → Graph → Embeddings → RAG → LLM → Dashboard
+- Animated data-flow arrows
+- Layer cards with descriptions
+- Tech stack tags
+
+====================================================
+PIPELINE TAB
+====================================================
+
+Display:
+- Pipeline job table
+- Per-stage progress bars
+- Status badges
+- Queue monitoring
+- Live updates
+
+Stages:
+- Extraction
+- Cleaning
+- NER
+- Graph build
+- Embeddings
+- FAISS indexing
+- Community detection
+
+====================================================
+GRAPH VIEW TAB
+====================================================
+
+Implement:
+- Interactive graph canvas
+- Dynamic layout
+- Graph statistics
+- Cypher query input
+- Node details drawer
+- Relationship inspector
+
+====================================================
+OLLAMA MODELS TAB
+====================================================
+
+Features:
+- Auto-detect Ollama models
+- Benchmark cards
+- Select active model
+- RAG optimization recommendations
+- Model metadata
+
+====================================================
+QUERY CONSOLE TAB
+====================================================
+
+Implement:
+- Natural language input
+- Graph traversal settings
+- Streaming response terminal
+- Retrieval logs
+- Generated Cypher display
+- Context chunks viewer
+
+====================================================
+DASHBOARD TAB
+====================================================
+
+Include:
+- Add new data source modal
+- Resource utilization widgets
+- Query history table
+- Index statistics
+- Connected database list
+- Health checks
+
+====================================================
+BACKEND REQUIREMENTS
+====================================================
+
+Backend stack:
+- FastAPI
+- SQLAlchemy
+- Neo4j Python Driver
+- sentence-transformers
+- FAISS
+- spaCy
+- NetworkX
+- Ollama API
+- asyncio
+- WebSockets
+
+Implement:
+- Modular service architecture
+- Async processing
+- Background jobs
+- WebSocket updates
+- Graph services
+- Embedding services
+- Retrieval services
+- Model orchestration
+
+====================================================
+DIRECTORY STRUCTURE
+====================================================
+
+Generate a clean monorepo structure:
+
+/apps
+  /frontend
+  /backend
+/packages
+  /shared
+  /graph-engine
+  /rag-engine
+  /ui
+/docker
+/scripts
+/docs
+
+====================================================
+CLI REQUIREMENTS
+====================================================
+
+Create a CLI tool:
+
+Command:
+
+npx create-graph-rag-app
+
+OR
+
+python -m graph_rag_cli init
+
+CLI should:
+- Scaffold project
+- Configure Docker
+- Setup Neo4j
+- Install dependencies
+- Create .env
+- Start backend/frontend
+- Pull Ollama model
+- Seed demo data
+
+Provide:
+- Interactive prompts
+- Theme selection
+- Database connector selection
+- Optional GPU acceleration
+
+====================================================
+DOCKER REQUIREMENTS
+====================================================
+
+Generate:
+- docker-compose.yml
+- Neo4j container
+- Backend container
+- Frontend container
+- Ollama container
+- Persistent volumes
+
+====================================================
+SECURITY REQUIREMENTS
+====================================================
+
+Implement:
+- Local-only mode
+- API key support
+- Role-based access
+- Encrypted config storage
+- Secure DB credential handling
+
+====================================================
+DELIVERABLES
+====================================================
+
+Generate:
+1. Full frontend code
+2. Full backend code
+3. Docker setup
+4. CLI scaffolder
+5. API routes
+6. Graph engine
+7. Vector indexing system
+8. Ollama integration
+9. UI components
+10. README
+11. Architecture documentation
+12. Environment configs
+13. Example seed data
+14. Setup scripts
+15. Production-ready folder structure
+
+====================================================
+QUALITY REQUIREMENTS
+====================================================
+
+- Strong TypeScript typing
+- Production-ready code
+- Clean architecture
+- Reusable components
+- Responsive UI
+- Dark futuristic theme
+- Real-time animations
+- Error handling
+- Logging
+- Performance optimization
+- GPU-aware processing
+- Scalable indexing
+
+====================================================
+OUTPUT FORMAT
+====================================================
+
+Generate:
+1. Full folder structure
+2. File-by-file implementation
+3. Setup instructions
+4. Docker instructions
+5. CLI usage
+6. API examples
+7. Architecture diagrams
+8. Deployment instructions
+
+Ensure the project runs locally with:
+
+docker compose up
+
+and launches:
+- FastAPI backend
+- React dashboard
+- Neo4j graph store
+- Ollama inference engine
+
+The entire system must feel like an enterprise AI observability + graph intelligence platform.
+```
+
+---
+
+# Example CLI Commands
+
+```bash
+# Create project
+npx create-graph-rag-app my-rag-system
+
+# Start services
+docker compose up
+
+# Backend
+cd apps/backend
+uvicorn main:app --reload
+
+# Frontend
+cd apps/frontend
+npm run dev
+```
+
+---
+
+# Recommended Add-ons
+
+## Optional Enhancements
+
+* LangGraph orchestration
+* Graph embeddings
+* Multi-agent retrieval
+* Temporal graph analysis
+* Graph anomaly detection
+* RBAC admin panel
+* Live ingestion scheduler
+* Airflow integration
+* Kafka streaming ingestion
+* Local PDF ingestion
+* Audio transcription ingestion
+* MCP server support
+* Hybrid cloud sync
+
+---
+
+# Suggested Branding
+
+Possible project names:
+
+* GraphForge AI
+* NeoRAG Studio
+* GraphMind Local
+* VectorGraph OS
+* NexusRAG
+* Synapse Graph AI
