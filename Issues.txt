@@ -1,8 +1,710 @@
-1. Click button process buffer should show when i click dissconnect button or add sources button  action happens after some time but user not find butten clicked after cilc there is button buffering show.
-2. when i sewlect nay mode the select on that model shuld be change to selected and green colcor same model.
-3. Recheck Pipline logic becuase not run and implement pallel procesing in pipline perocess.
-4.in Pipline there are 4 pipline shows but active piupline in dashbaord 0 showing recheck logic.
-5.Ollama Modles section showing pull button : what is that need this scetion only show which model alredy present in system then what is use of pull button remove it, Select Model functionaity also not working.
-6. Query Console bussiness logic not wokring, is shows error "'NoneType' object has no attribute 'strip'" add logger in this section put error logs in this folder.
-7. Re-check Buessines logic again the bacend code not working as per rquriment.
-8. test.txt file contains some failed testcases implement this also.
+API Error: 
+
+3:43:48 pm [vite] http proxy error: /api/dashboard/metrics
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:43:48 pm [vite] http proxy error: /api/dashboard/health
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:43:48 pm [vite] http proxy error: /api/datasources
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:43:48 pm [vite] http proxy error: /api/dashboard/health
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:43:48 pm [vite] http proxy error: /api/dashboard/metrics
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:43:48 pm [vite] http proxy error: /api/datasources
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:43:58 pm [vite] http proxy error: /api/dashboard/metrics
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:43:58 pm [vite] http proxy error: /api/dashboard/health
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:43:58 pm [vite] http proxy error: /api/datasources
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:44:01 pm [vite] http proxy error: /api/pipelines
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:44:01 pm [vite] http proxy error: /api/pipelines
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5) (x2)
+3:44:04 pm [vite] http proxy error: /api/graph?limit=100
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:44:04 pm [vite] http proxy error: /api/graph?limit=100
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5) (x2)
+3:44:07 pm [vite] http proxy error: /api/ollama/status
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:44:07 pm [vite] http proxy error: /api/ollama/models
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:44:07 pm [vite] http proxy error: /api/ollama/status
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:44:07 pm [vite] http proxy error: /api/ollama/models
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:44:15 pm [vite] http proxy error: /api/dashboard/metrics
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:44:15 pm [vite] http proxy error: /api/dashboard/health
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:44:15 pm [vite] http proxy error: /api/datasources
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:44:15 pm [vite] http proxy error: /api/dashboard/metrics
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:44:15 pm [vite] http proxy error: /api/dashboard/health
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:44:16 pm [vite] http proxy error: /api/datasources
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:44:25 pm [vite] http proxy error: /api/dashboard/metrics
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:44:25 pm [vite] http proxy error: /api/dashboard/health
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:44:25 pm [vite] http proxy error: /api/datasources
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:44:52 pm [vite] http proxy error: /api/dashboard/metrics
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:44:52 pm [vite] http proxy error: /api/dashboard/health
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:44:52 pm [vite] http proxy error: /api/datasources
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:44:52 pm [vite] http proxy error: /api/dashboard/metrics
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:44:52 pm [vite] http proxy error: /api/dashboard/health
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:44:52 pm [vite] http proxy error: /api/datasources
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:45:01 pm [vite] http proxy error: /api/pipelines
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:45:01 pm [vite] http proxy error: /api/pipelines
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5) (x2)
+3:45:04 pm [vite] http proxy error: /api/graph?limit=100
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:45:04 pm [vite] http proxy error: /api/graph?limit=100
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5) (x2)
+3:45:10 pm [vite] http proxy error: /api/ollama/status
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:45:10 pm [vite] http proxy error: /api/ollama/models
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:45:10 pm [vite] http proxy error: /api/ollama/status
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:45:10 pm [vite] http proxy error: /api/ollama/models
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:45:14 pm [vite] http proxy error: /api/query/history?limit=10
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:45:14 pm [vite] http proxy error: /api/ollama/models
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:45:14 pm [vite] http proxy error: /api/query/history?limit=10
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:45:14 pm [vite] http proxy error: /api/ollama/models
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:46:05 pm [vite] http proxy error: /api/dashboard/metrics
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:46:05 pm [vite] http proxy error: /api/dashboard/health
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:46:05 pm [vite] http proxy error: /api/datasources
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:46:05 pm [vite] http proxy error: /api/dashboard/metrics
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:46:05 pm [vite] http proxy error: /api/dashboard/health
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:46:05 pm [vite] http proxy error: /api/datasources
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:46:15 pm [vite] http proxy error: /api/dashboard/metrics
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:46:15 pm [vite] http proxy error: /api/dashboard/health
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:46:15 pm [vite] http proxy error: /api/datasources
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:46:25 pm [vite] http proxy error: /api/dashboard/metrics
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:46:25 pm [vite] http proxy error: /api/dashboard/health
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:46:25 pm [vite] http proxy error: /api/datasources
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:46:35 pm [vite] http proxy error: /api/dashboard/metrics
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:46:35 pm [vite] http proxy error: /api/dashboard/health
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:46:35 pm [vite] http proxy error: /api/datasources
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:46:37 pm [vite] http proxy error: /api/datasources
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5) (x2)
+3:46:45 pm [vite] http proxy error: /api/dashboard/metrics
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:46:45 pm [vite] http proxy error: /api/dashboard/health
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:46:45 pm [vite] http proxy error: /api/datasources
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:46:46 pm [vite] http proxy error: /api/dashboard/metrics
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:46:46 pm [vite] http proxy error: /api/dashboard/health
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:46:46 pm [vite] http proxy error: /api/datasources
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:46:46 pm [vite] http proxy error: /api/dashboard/metrics
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:46:46 pm [vite] http proxy error: /api/dashboard/health
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:46:46 pm [vite] http proxy error: /api/datasources
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:46:55 pm [vite] http proxy error: /api/dashboard/metrics
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:46:55 pm [vite] http proxy error: /api/dashboard/health
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:46:55 pm [vite] http proxy error: /api/datasources
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:46:56 pm [vite] http proxy error: /api/dashboard/metrics
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:46:56 pm [vite] http proxy error: /api/dashboard/health
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:46:56 pm [vite] http proxy error: /api/datasources
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:47:06 pm [vite] http proxy error: /api/dashboard/metrics
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:47:06 pm [vite] http proxy error: /api/dashboard/health
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:47:06 pm [vite] http proxy error: /api/datasources
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:47:17 pm [vite] http proxy error: /api/dashboard/metrics
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:47:17 pm [vite] http proxy error: /api/dashboard/health
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:47:17 pm [vite] http proxy error: /api/datasources
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:47:26 pm [vite] http proxy error: /api/dashboard/metrics
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:47:26 pm [vite] http proxy error: /api/dashboard/health
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:47:26 pm [vite] http proxy error: /api/datasources
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:47:36 pm [vite] http proxy error: /api/dashboard/metrics
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:47:36 pm [vite] http proxy error: /api/dashboard/health
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:47:36 pm [vite] http proxy error: /api/datasources
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:47:46 pm [vite] http proxy error: /api/dashboard/metrics
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:47:46 pm [vite] http proxy error: /api/dashboard/health
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:47:46 pm [vite] http proxy error: /api/datasources
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:47:49 pm [vite] http proxy error: /api/datasources
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5) (x2)
+3:47:53 pm [vite] http proxy error: /api/dashboard/metrics
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:47:53 pm [vite] http proxy error: /api/dashboard/health
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:47:53 pm [vite] http proxy error: /api/datasources
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:47:53 pm [vite] http proxy error: /api/dashboard/metrics
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:47:53 pm [vite] http proxy error: /api/dashboard/health
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:47:53 pm [vite] http proxy error: /api/datasources
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:48:03 pm [vite] http proxy error: /api/dashboard/metrics
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:48:03 pm [vite] http proxy error: /api/dashboard/health
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:48:03 pm [vite] http proxy error: /api/datasources
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:48:08 pm [vite] http proxy error: /api/dashboard/metrics
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:48:08 pm [vite] http proxy error: /api/dashboard/health
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:48:08 pm [vite] http proxy error: /api/datasources
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:48:09 pm [vite] http proxy error: /api/dashboard/metrics
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:48:09 pm [vite] http proxy error: /api/dashboard/health
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:48:09 pm [vite] http proxy error: /api/datasources
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:48:09 pm [vite] http proxy error: /api/dashboard/metrics
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:48:09 pm [vite] http proxy error: /api/dashboard/health
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:48:09 pm [vite] http proxy error: /api/datasources
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:48:10 pm [vite] http proxy error: /api/dashboard/metrics
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:48:10 pm [vite] http proxy error: /api/dashboard/health
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:48:10 pm [vite] http proxy error: /api/datasources
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:48:13 pm [vite] http proxy error: /api/dashboard/metrics
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:48:13 pm [vite] http proxy error: /api/dashboard/health
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:48:13 pm [vite] http proxy error: /api/datasources
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:48:23 pm [vite] http proxy error: /api/dashboard/metrics
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:48:23 pm [vite] http proxy error: /api/dashboard/health
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:48:23 pm [vite] http proxy error: /api/datasources
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:48:33 pm [vite] http proxy error: /api/dashboard/metrics
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:48:33 pm [vite] http proxy error: /api/dashboard/health
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:48:33 pm [vite] http proxy error: /api/datasources
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:48:44 pm [vite] http proxy error: /api/dashboard/metrics
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:48:44 pm [vite] http proxy error: /api/datasources
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:48:44 pm [vite] http proxy error: /api/dashboard/health
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:48:53 pm [vite] http proxy error: /api/dashboard/metrics
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:48:53 pm [vite] http proxy error: /api/dashboard/health
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:48:53 pm [vite] http proxy error: /api/datasources
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:49:03 pm [vite] http proxy error: /api/dashboard/metrics
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:49:03 pm [vite] http proxy error: /api/dashboard/health
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:49:03 pm [vite] http proxy error: /api/datasources
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:49:12 pm [vite] http proxy error: /api/datasources
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5) (x2)
+3:49:13 pm [vite] http proxy error: /api/dashboard/metrics
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:49:13 pm [vite] http proxy error: /api/dashboard/health
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:49:13 pm [vite] http proxy error: /api/datasources
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:49:21 pm [vite] http proxy error: /api/pipelines
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:49:21 pm [vite] http proxy error: /api/pipelines
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5) (x2)
+3:49:23 pm [vite] http proxy error: /api/graph?limit=100
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:49:23 pm [vite] http proxy error: /api/graph?limit=100
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5) (x2)
+3:49:24 pm [vite] http proxy error: /api/ollama/status
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:49:24 pm [vite] http proxy error: /api/ollama/models
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:49:24 pm [vite] http proxy error: /api/ollama/status
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:49:24 pm [vite] http proxy error: /api/ollama/models
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:49:25 pm [vite] http proxy error: /api/query/history?limit=10
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:49:25 pm [vite] http proxy error: /api/ollama/models
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:49:25 pm [vite] http proxy error: /api/query/history?limit=10
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:49:25 pm [vite] http proxy error: /api/ollama/models
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:49:26 pm [vite] http proxy error: /api/dashboard/metrics
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:49:26 pm [vite] http proxy error: /api/dashboard/health
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:49:26 pm [vite] http proxy error: /api/datasources
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:49:26 pm [vite] http proxy error: /api/dashboard/metrics
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:49:26 pm [vite] http proxy error: /api/dashboard/health
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:49:26 pm [vite] http proxy error: /api/datasources
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:49:27 pm [vite] http proxy error: /api/dashboard/metrics
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:49:27 pm [vite] http proxy error: /api/dashboard/health
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:49:27 pm [vite] http proxy error: /api/datasources
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:49:28 pm [vite] http proxy error: /api/dashboard/metrics
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:49:28 pm [vite] http proxy error: /api/dashboard/health
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:49:28 pm [vite] http proxy error: /api/datasources
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:49:28 pm [vite] http proxy error: /api/dashboard/metrics
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:49:28 pm [vite] http proxy error: /api/dashboard/health
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:49:28 pm [vite] http proxy error: /api/datasources
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:49:28 pm [vite] http proxy error: /api/dashboard/metrics
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:49:28 pm [vite] http proxy error: /api/dashboard/health
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:49:28 pm [vite] http proxy error: /api/datasources
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:49:29 pm [vite] http proxy error: /api/dashboard/metrics
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:49:29 pm [vite] http proxy error: /api/dashboard/health
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:49:29 pm [vite] http proxy error: /api/datasources
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:49:29 pm [vite] http proxy error: /api/dashboard/metrics
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:49:29 pm [vite] http proxy error: /api/dashboard/health
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:49:29 pm [vite] http proxy error: /api/datasources
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:49:36 pm [vite] http proxy error: /api/dashboard/metrics
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:49:36 pm [vite] http proxy error: /api/datasources
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:49:36 pm [vite] http proxy error: /api/dashboard/health
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:49:46 pm [vite] http proxy error: /api/dashboard/metrics
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:49:46 pm [vite] http proxy error: /api/dashboard/health
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+3:49:46 pm [vite] http proxy error: /api/datasources
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+
+
+
+

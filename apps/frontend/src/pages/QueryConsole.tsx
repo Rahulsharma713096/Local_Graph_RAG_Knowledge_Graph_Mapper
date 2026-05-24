@@ -1,12 +1,13 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Send, Terminal, Code2, ListChecks, Clock,
-  ChevronRight, Search, Layers, Loader2, Sparkles,
+  ChevronRight, Search, Layers, Loader2, Sparkles, AlertCircle,
+  RotateCw, BarChart3, Timer,
 } from 'lucide-react';
 import * as api from '../lib/api';
 import { useAppStore } from '../store/useAppStore';
-import type { QueryResult, QueryHistoryItem } from '../types';
+import type { QueryResult, QueryHistoryItem, TimelineEntry } from '../types';
 
 const stepIcons: Record<string, string> = {
   'Embed Query': '🧠',
@@ -24,12 +25,30 @@ export function QueryConsole() {
   const [history, setHistory] = useState<QueryHistoryItem[]>([]);
   const [showHistory, setShowHistory] = useState(false);
   const [showCypher, setShowCypher] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [reSearching, setReSearching] = useState(false);
+  const [showTimeline, setShowTimeline] = useState(false);
   const terminalRef = useRef<HTMLDivElement>(null);
-  const { selectedModel } = useAppStore();
+  const { selectedModel, setSelectedModel } = useAppStore();
 
   useEffect(() => {
     loadHistory();
+    // Fetch the currently active Ollama model so QueryConsole always uses
+    // the model selected in the Ollama Models tab
+    loadActiveModel();
   }, []);
+
+  const loadActiveModel = async () => {
+    try {
+      const models = await api.listOllamaModels();
+      const active = models.find((m) => m.is_active);
+      if (active) {
+        setSelectedModel(active.name);
+      }
+    } catch (e) {
+      console.error('Failed to fetch active model', e);
+    }
+  };
 
   useEffect(() => {
     if (terminalRef.current) {
@@ -47,22 +66,30 @@ export function QueryConsole() {
   };
 
   const handleSubmit = async () => {
-    if (!query.trim() || loading) return;
+    const trimmedQuery = query.trim();
+    if (!trimmedQuery || loading) return;
 
     setLoading(true);
     setResult(null);
+    setError(null);
 
     try {
       const data = await api.queryGraph({
-        query: query.trim(),
+        query: trimmedQuery,
         traversal_depth: traversalDepth,
         model: selectedModel || undefined,
       });
       setResult(data);
+      // Check for errors in response
+      if (data.answer && data.answer.startsWith('Query processing error:')) {
+        setError(data.answer);
+      }
       loadHistory();
     } catch (e: any) {
+      const errorMsg = e.message || 'An unexpected error occurred';
+      setError(errorMsg);
       setResult({
-        answer: `Error: ${e.message}`,
+        answer: `Error: ${errorMsg}`,
         execution_time_ms: 0,
         pipeline_steps: [],
       });
@@ -71,9 +98,34 @@ export function QueryConsole() {
     }
   };
 
+  const handleReSearch = async () => {
+    const trimmedQuery = query.trim();
+    if (!trimmedQuery || reSearching) return;
+    setReSearching(true);
+    setError(null);
+    try {
+      const data = await api.queryGraph({
+        query: trimmedQuery,
+        traversal_depth: traversalDepth,
+        model: selectedModel || undefined,
+        retry: true,
+      });
+      setResult(data);
+      if (data.answer && data.answer.startsWith('Query processing error:')) {
+        setError(data.answer);
+      }
+    } catch (e: any) {
+      setError(e.message || 'Re-search failed');
+    } finally {
+      setReSearching(false);
+    }
+  };
+
   const loadFromHistory = (item: QueryHistoryItem) => {
     setQuery(item.natural_query);
     setShowHistory(false);
+    setResult(null);
+    setError(null);
   };
 
   return (
@@ -95,7 +147,8 @@ export function QueryConsole() {
                 <Layers className="w-4 h-4 text-gray-500" />
                 <span className="text-xs text-gray-500">Traversal Depth:</span>
               </div>
-              {[1, 2, 3, 5].map((d) => (
+              {/* Issue #4: Multiple depth options with 2 as default */}
+              {[1, 2, 3, 5, 8, 10].map((d) => (
                 <button
                   key={d}
                   onClick={() => setTraversalDepth(d)}
@@ -125,11 +178,12 @@ export function QueryConsole() {
                 onChange={(e) => setQuery(e.target.value)}
                 onKeyDown={(e) => e.key === 'Enter' && handleSubmit()}
                 placeholder="Ask anything about your knowledge graph..."
+                disabled={loading}
               />
               <button
                 onClick={handleSubmit}
                 disabled={loading || !query.trim()}
-                className="btn-primary disabled:opacity-50"
+                className="btn-primary disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {loading ? (
                   <Loader2 className="w-4 h-4 animate-spin" />
@@ -139,6 +193,21 @@ export function QueryConsole() {
               </button>
             </div>
           </div>
+
+          {/* Error Banner */}
+          {error && (
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="glass-card p-3 border-red-500/20 flex items-center gap-2"
+            >
+              <AlertCircle className="w-4 h-4 text-red-400 flex-shrink-0" />
+              <span className="text-xs text-red-400">{error}</span>
+              <button onClick={() => setError(null)} className="ml-auto text-xs text-gray-500 hover:text-gray-300">
+                Dismiss
+              </button>
+            </motion.div>
+          )}
 
           {/* Pipeline Visualization */}
           {loading && (
@@ -167,7 +236,7 @@ export function QueryConsole() {
 
           {/* Result */}
           <AnimatePresence>
-            {result && (
+            {result && !loading && (
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -184,18 +253,63 @@ export function QueryConsole() {
                       {(result.execution_time_ms / 1000).toFixed(2)}s
                     </span>
                   </div>
-                  <div className="text-sm text-gray-300 leading-relaxed whitespace-pre-wrap">
-                    {result.answer}
+                  <div className={`text-sm leading-relaxed whitespace-pre-wrap ${
+                    result.answer?.startsWith('Error') || result.answer?.startsWith('Query processing error')
+                      ? 'text-red-400'
+                      : 'text-gray-300'
+                  }`}>
+                    {result.answer || 'No answer generated. Try a different query.'}
                   </div>
+
+                  {/* Re-search prompt when no graph data found */}
+                  {result.graph_found === false && result.followup_suggestion && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="mt-4 p-4 rounded-lg bg-amber-500/10 border border-amber-500/20"
+                    >
+                      <p className="text-xs text-amber-300 leading-relaxed">
+                        {result.followup_suggestion}
+                      </p>
+                      <button
+                        onClick={handleReSearch}
+                        disabled={reSearching}
+                        className="mt-3 btn-primary text-xs py-1.5 disabled:opacity-50 flex items-center gap-1.5"
+                      >
+                        {reSearching ? (
+                          <>
+                            <Loader2 className="w-3 h-3 animate-spin" />
+                            Searching...
+                          </>
+                        ) : (
+                          <>
+                            <RotateCw className="w-3 h-3" />
+                            Search Again
+                          </>
+                        )}
+                      </button>
+                    </motion.div>
+                  )}
                 </div>
 
                 {/* Pipeline Steps */}
-                {result.pipeline_steps.length > 0 && (
+                {result.pipeline_steps && result.pipeline_steps.length > 0 && (
                   <div className="glass-card p-4">
-                    <h3 className="text-xs font-semibold text-white mb-3 flex items-center gap-2">
-                      <ListChecks className="w-3.5 h-3.5 text-primary-400" />
-                      Pipeline Steps
-                    </h3>
+                    <div className="flex items-center justify-between mb-3">
+                      <h3 className="text-xs font-semibold text-white flex items-center gap-2">
+                        <ListChecks className="w-3.5 h-3.5 text-primary-400" />
+                        Pipeline Steps
+                      </h3>
+                      {result.timeline && result.timeline.length > 0 && (
+                        <button
+                          onClick={() => setShowTimeline(!showTimeline)}
+                          className="btn-ghost text-xs flex items-center gap-1"
+                        >
+                          <Timer className="w-3 h-3" />
+                          {showTimeline ? 'Hide Timeline' : 'Show Timeline'}
+                        </button>
+                      )}
+                    </div>
                     <div className="space-y-2">
                       {result.pipeline_steps.map((step, i) => (
                         <div key={i} className="flex items-center gap-3 py-1">
@@ -211,6 +325,61 @@ export function QueryConsole() {
                         </div>
                       ))}
                     </div>
+
+                    {/* SRS: Query Timeline — Per-step timing visualization */}
+                    {showTimeline && result.timeline && result.timeline.length > 0 && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: 'auto' }}
+                        className="mt-4 pt-3 border-t border-surface-700/50"
+                      >
+                        <h4 className="text-[10px] uppercase tracking-widest text-gray-500 mb-3 flex items-center gap-1.5">
+                          <BarChart3 className="w-3 h-3" />
+                          Execution Timeline
+                        </h4>
+                        <div className="space-y-2">
+                          {result.timeline.map((entry: TimelineEntry, i: number) => (
+                            <div key={i} className="flex items-center gap-3">
+                              <div className={`w-1.5 h-1.5 rounded-full flex-shrink-0 ${
+                                entry.status === 'completed' ? 'bg-emerald-500' :
+                                entry.status === 'failed' ? 'bg-red-500' :
+                                'bg-primary-500'
+                              }`} />
+                              <div className="flex-1 min-w-0">
+                                <div className="flex items-center justify-between">
+                                  <span className="text-xs text-gray-300 truncate">{entry.step}</span>
+                                  <span className="text-[10px] text-gray-500 ml-2 flex-shrink-0">
+                                    {entry.duration_ms > 1000
+                                      ? `${(entry.duration_ms / 1000).toFixed(2)}s`
+                                      : `${entry.duration_ms.toFixed(0)}ms`}
+                                  </span>
+                                </div>
+                                {/* Duration bar */}
+                                <div className="mt-1 h-1 bg-surface-800 rounded-full overflow-hidden">
+                                  <div
+                                    className={`h-full rounded-full transition-all duration-500 ${
+                                      entry.status === 'completed' ? 'bg-emerald-500/60' :
+                                      entry.status === 'failed' ? 'bg-red-500/60' :
+                                      'bg-primary-500/60'
+                                    }`}
+                                    style={{
+                                      width: `${Math.min((entry.duration_ms / Math.max(...result.timeline!.map((t: TimelineEntry) => t.duration_ms), 1)) * 100, 100)}%`,
+                                    }}
+                                  />
+                                </div>
+                              </div>
+                            </div>
+                          ))}
+                          {/* Total time */}
+                          <div className="flex items-center justify-between pt-2 border-t border-surface-700/30">
+                            <span className="text-[10px] font-semibold text-gray-400">Total</span>
+                            <span className="text-[10px] font-semibold text-primary-400">
+                              {(result.execution_time_ms / 1000).toFixed(2)}s
+                            </span>
+                          </div>
+                        </div>
+                      </motion.div>
+                    )}
                   </div>
                 )}
 
@@ -250,7 +419,8 @@ export function QueryConsole() {
               className="p-4 h-64 overflow-auto font-mono text-xs space-y-1"
             >
               <div className="text-emerald-400">$ graphrag query ready</div>
-              <div className="text-gray-500">└─ Ollama: {selectedModel || 'default'}</div>
+              {/* Issue #3: Show actual selected model name */}
+              <div className="text-gray-500">└─ Ollama: <span className="text-primary-400">{selectedModel || 'default (llama3.1)'}</span></div>
               <div className="text-gray-500">└─ Traversal depth: {traversalDepth}</div>
               {loading && (
                 <div className="text-primary-400 animate-pulse">└─ Processing query...</div>
@@ -258,7 +428,7 @@ export function QueryConsole() {
               {result && (
                 <>
                   <div className="text-primary-400">└─ Query completed in {(result.execution_time_ms / 1000).toFixed(2)}s</div>
-                  <div className="text-gray-500">└─ Pipeline steps: {result.pipeline_steps.length}</div>
+                  <div className="text-gray-500">└─ Pipeline steps: {result.pipeline_steps?.length || 0}</div>
                   {result.generated_cypher && (
                     <div className="text-accent-400">└─ Cypher generated ✓</div>
                   )}

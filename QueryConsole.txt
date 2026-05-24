@@ -1,0 +1,532 @@
+# Query Console — Best Enterprise Architecture for Graph RAG + LLM
+
+## Core Objective
+
+The Query Console should behave like an:
+
+* AI-native investigation terminal
+* Graph-aware reasoning engine
+* Hybrid vector + graph retrieval orchestrator
+* Streaming LLM workspace
+* Explainable RAG pipeline visualizer
+
+The architecture below is optimized for:
+
+* local LLMs via Ollama
+* graph traversal
+* hybrid retrieval
+* low-latency streaming
+* explainable responses
+* scalable enterprise workflows
+
+---
+
+# Recommended Query Console Architecture
+
+```text id="t4gq0j"
+┌────────────────────────────────────────────────────────────┐
+│                    QUERY CONSOLE UI                       │
+├────────────────────────────────────────────────────────────┤
+│ Natural Language Input                                    │
+│ Query Settings                                             │
+│ Traversal Depth                                             │
+│ Graph Scope Selector                                        │
+│ Live Streaming Terminal                                     │
+│ Context Viewer                                              │
+│ Generated Cypher Panel                                      │
+│ Retrieval Timeline                                          │
+└────────────────────────────────────────────────────────────┘
+                           │
+                           ▼
+┌────────────────────────────────────────────────────────────┐
+│                 QUERY ORCHESTRATOR                        │
+├────────────────────────────────────────────────────────────┤
+│ Session Manager                                             │
+│ Query Planner                                               │
+│ Prompt Builder                                              │
+│ Tool Router                                                 │
+│ Retrieval Strategy Selector                                 │
+└────────────────────────────────────────────────────────────┘
+                           │
+          ┌────────────────┼─────────────────┐
+          ▼                ▼                 ▼
+
+┌────────────────┐ ┌────────────────┐ ┌────────────────────┐
+│ VECTOR SEARCH  │ │ GRAPH SEARCH   │ │ METADATA SEARCH    │
+├────────────────┤ ├────────────────┤ ├────────────────────┤
+│ FAISS          │ │ Neo4j          │ │ SQL/JSON configs   │
+│ Semantic Match │ │ Multi-Hop      │ │ Pipeline metadata  │
+│ Chunk Ranking  │ │ Traversal      │ │ Tags/filters       │
+└────────────────┘ └────────────────┘ └────────────────────┘
+          │                │                 │
+          └────────────────┼─────────────────┘
+                           ▼
+
+┌────────────────────────────────────────────────────────────┐
+│                 CONTEXT AGGREGATION                       │
+├────────────────────────────────────────────────────────────┤
+│ Deduplication                                               │
+│ Re-ranking                                                  │
+│ Graph neighborhood expansion                                │
+│ Token budget optimizer                                      │
+│ Context compression                                          │
+└────────────────────────────────────────────────────────────┘
+                           │
+                           ▼
+
+┌────────────────────────────────────────────────────────────┐
+│                   CYPHER GENERATOR                        │
+├────────────────────────────────────────────────────────────┤
+│ LLM-assisted Cypher generation                              │
+│ Query validation                                             │
+│ Graph schema grounding                                       │
+│ Safety checks                                                │
+└────────────────────────────────────────────────────────────┘
+                           │
+                           ▼
+
+┌────────────────────────────────────────────────────────────┐
+│                    OLLAMA LLM LAYER                       │
+├────────────────────────────────────────────────────────────┤
+│ llama3.1 / mistral / deepseek                              │
+│ Streaming token output                                      │
+│ Buffered response pipeline                                  │
+│ Context-window optimization                                 │
+│ Retry + timeout management                                  │
+└────────────────────────────────────────────────────────────┘
+                           │
+                           ▼
+
+┌────────────────────────────────────────────────────────────┐
+│                  STREAMING RESPONSE UI                    │
+├────────────────────────────────────────────────────────────┤
+│ Incremental tokens                                           │
+│ Source citations                                              │
+│ Graph references                                               │
+│ Retrieval explanation                                          │
+│ Execution timeline                                              │
+└────────────────────────────────────────────────────────────┘
+```
+
+---
+
+# Best Retrieval Workflow
+
+## Recommended Hybrid Flow
+
+```text id="jlfdd0"
+USER QUERY
+    │
+    ▼
+Query Embedding
+    │
+    ▼
+Hybrid Retrieval
+ ┌──────────────┬───────────────┐
+ ▼              ▼               ▼
+FAISS       Neo4j Traversal   Metadata
+Search      Graph Expansion   Filters
+    │              │               │
+    └──────┬───────┴───────────────┘
+           ▼
+Context Re-ranking
+           │
+           ▼
+Cypher Generation
+           │
+           ▼
+Graph Validation
+           │
+           ▼
+LLM Prompt Builder
+           │
+           ▼
+Ollama Streaming
+           │
+           ▼
+Terminal Response
+```
+
+---
+
+# Why This Architecture Works Best
+
+## 1. Hybrid Retrieval
+
+Pure vector RAG is weak for relationships.
+
+Using:
+
+* FAISS → semantic similarity
+* Neo4j → relationship reasoning
+
+gives:
+
+* contextual retrieval
+* entity-aware reasoning
+* multi-hop intelligence
+* explainable outputs
+
+---
+
+# Retrieval Layer Design
+
+## Vector Retrieval
+
+Purpose:
+
+* semantic understanding
+* fuzzy matching
+* unstructured text search
+
+Best for:
+
+* PDFs
+* notes
+* documentation
+* embeddings
+
+### Recommended Stack
+
+| Component  | Tech                  |
+| ---------- | --------------------- |
+| Embeddings | sentence-transformers |
+| Vector DB  | FAISS                 |
+| Ranking    | cosine similarity     |
+| Re-ranker  | cross-encoder         |
+
+---
+
+## Graph Retrieval
+
+Purpose:
+
+* entity reasoning
+* relationship traversal
+* contextual neighborhood search
+
+Best for:
+
+* customer/product/order mapping
+* fraud analysis
+* supply chain tracing
+* enterprise intelligence
+
+### Recommended Features
+
+| Feature             | Purpose        |
+| ------------------- | -------------- |
+| Multi-hop traversal | deep context   |
+| Community detection | grouping       |
+| Centrality ranking  | importance     |
+| Path scoring        | explainability |
+| Graph expansion     | richer prompts |
+
+---
+
+# Query Orchestrator (Critical Layer)
+
+This is the MOST important architectural layer.
+
+## Responsibilities
+
+```text id="b6hr0u"
+User Query
+    │
+    ▼
+Intent Detection
+    │
+    ├── Semantic Query
+    ├── Relational Query
+    ├── Aggregation Query
+    ├── Investigative Query
+    └── Hybrid Query
+```
+
+Then dynamically decide:
+
+* vector search depth
+* graph traversal depth
+* Cypher generation
+* token budget
+* model selection
+
+---
+
+# Intelligent Query Planning
+
+## Example
+
+### User asks:
+
+> "Show customers connected to delayed shipments from suppliers in Asia"
+
+The planner should:
+
+### Step 1 — Entity Extraction
+
+```text id="8a6g3e"
+Entities:
+- customers
+- delayed shipments
+- suppliers
+- Asia
+```
+
+### Step 2 — Graph Expansion
+
+```text id="ukf7l8"
+Customer
+  → Order
+      → Shipment
+          → Supplier
+              → Region
+```
+
+### Step 3 — Cypher Generation
+
+```cypher
+MATCH (c:Customer)-[:PLACED]->(o:Order)
+      -[:HAS_SHIPMENT]->(s:Shipment)
+      -[:SUPPLIED_BY]->(sup:Supplier)
+WHERE s.status = 'Delayed'
+AND sup.region = 'Asia'
+RETURN c, s, sup
+```
+
+### Step 4 — Context Expansion
+
+Retrieve:
+
+* shipment metadata
+* supplier risk scores
+* historical delays
+* related entities
+
+### Step 5 — LLM Synthesis
+
+Generate:
+
+* explanation
+* trends
+* recommendations
+* risk summary
+
+---
+
+# Best LLM Architecture
+
+## Recommended Model Routing
+
+| Query Type          | Recommended Model |
+| ------------------- | ----------------- |
+| Fast semantic Q&A   | phi3              |
+| General RAG         | llama3.1          |
+| Deep reasoning      | deepseek          |
+| Code/Cypher         | codellama         |
+| Lightweight systems | mistral           |
+
+---
+
+# Streaming Architecture (Very Important)
+
+Since local Ollama models can be slow:
+
+## Use Buffered Streaming
+
+```text id="7a4psm"
+LLM Tokens
+    │
+    ▼
+Token Buffer Queue
+    │
+    ▼
+WebSocket Streamer
+    │
+    ▼
+Frontend Terminal
+```
+
+## Recommended Features
+
+| Feature            | Purpose        |
+| ------------------ | -------------- |
+| Token buffering    | smooth UI      |
+| Partial rendering  | faster UX      |
+| Timeout recovery   | avoid freezes  |
+| Retry handling     | stability      |
+| Stream checkpoints | resume support |
+
+---
+
+# Query Console UI Architecture
+
+## Recommended Layout
+
+```text id="0c2vks"
+┌──────────────────────────────────────────────┐
+│ Query Input                                 │
+├──────────────────────────────────────────────┤
+│ Traversal Depth  │ Scope │ Active Model     │
+├──────────────────────────────────────────────┤
+│                                              │
+│ STREAMING TERMINAL                           │
+│ > retrieving graph context...                │
+│ > generating cypher...                       │
+│ > traversing relationships...                │
+│ > running semantic retrieval...              │
+│ > generating response...                     │
+│                                              │
+├──────────────────────────────────────────────┤
+│ Generated Cypher                             │
+├──────────────────────────────────────────────┤
+│ Retrieved Context Chunks                     │
+├──────────────────────────────────────────────┤
+│ Graph Neighborhood Viewer                    │
+├──────────────────────────────────────────────┤
+│ Execution Timeline                           │
+└──────────────────────────────────────────────┘
+```
+
+---
+
+# Recommended Backend Services
+
+## Query Console Services
+
+```text id="0x1yv4"
+services/
+│
+├── query_orchestrator/
+├── cypher_generator/
+├── graph_retriever/
+├── vector_retriever/
+├── reranker/
+├── prompt_builder/
+├── stream_manager/
+├── websocket_manager/
+└── ollama_manager/
+```
+
+---
+
+# Recommended Async Pipeline
+
+```text id="n7ftim"
+User Query
+   │
+   ├── Async Vector Search
+   ├── Async Graph Traversal
+   ├── Async Metadata Fetch
+   │
+   ▼
+Context Aggregation
+   │
+   ▼
+LLM Generation
+   │
+   ▼
+Streaming WebSocket Output
+```
+
+This massively improves speed.
+
+---
+
+# Best Prompt Architecture
+
+## Structured Prompting
+
+```text id="k9ucsq"
+SYSTEM:
+You are a graph-aware enterprise AI assistant.
+
+GRAPH CONTEXT:
+{graph_context}
+
+VECTOR CONTEXT:
+{semantic_context}
+
+QUERY:
+{user_query}
+
+GENERATED CYPHER:
+{cypher}
+
+INSTRUCTIONS:
+- Use graph relationships
+- Cite connected entities
+- Explain traversal logic
+- Avoid hallucinations
+```
+
+---
+
+# Enterprise-Level Improvements
+
+## Add These Advanced Components
+
+| Component               | Benefit                  |
+| ----------------------- | ------------------------ |
+| Cross-encoder reranker  | better retrieval quality |
+| Graph embeddings        | stronger graph semantics |
+| LangGraph orchestration | agent workflows          |
+| Redis cache             | query acceleration       |
+| Kafka                   | streaming ingestion      |
+| Airflow                 | scheduled jobs           |
+| Temporal memory         | session continuity       |
+
+---
+
+# Best Technology Stack for Query Console
+
+| Layer         | Technology            |
+| ------------- | --------------------- |
+| UI            | React + Tailwind      |
+| Streaming     | WebSockets            |
+| State         | Zustand               |
+| Graph UI      | Cytoscape.js          |
+| Backend       | FastAPI               |
+| Graph DB      | Neo4j                 |
+| Vector Search | FAISS                 |
+| LLM Runtime   | Ollama                |
+| NLP           | spaCy                 |
+| Async Runtime | asyncio               |
+| Embeddings    | sentence-transformers |
+
+---
+
+# Recommended Enterprise Pattern
+
+The BEST production architecture is:
+
+## Graph-Native Hybrid RAG
+
+NOT:
+
+* vector-only RAG
+* graph-only retrieval
+* single-step prompting
+
+BUT:
+
+```text id="qr4uh5"
+Semantic Retrieval
+        +
+Graph Traversal
+        +
+Cypher Reasoning
+        +
+LLM Synthesis
+        +
+Streaming Explainability
+```
+
+This gives:
+
+* accurate enterprise reasoning
+* explainable AI
+* scalable graph intelligence
+* low hallucination rate
+* real-time observability
+* production-grade UX

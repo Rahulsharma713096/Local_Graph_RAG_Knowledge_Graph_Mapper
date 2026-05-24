@@ -28,39 +28,38 @@ def test(name, method="GET", path="/", expected_status=200, data=None, validate=
             headers={"Content-Type": "application/json"} if data else {},
         )
         start = time.time()
-        with urllib.request.urlopen(req, timeout=timeout) as resp:
+        try:
+            with urllib.request.urlopen(req, timeout=timeout) as resp:
+                elapsed = round((time.time() - start) * 1000, 1)
+                status = resp.status
+                body = resp.read().decode()
+        except urllib.error.HTTPError as e:
             elapsed = round((time.time() - start) * 1000, 1)
-            status = resp.status
-            body = resp.read().decode()
-            try:
-                result = json.loads(body)
-            except json.JSONDecodeError:
-                result = body
+            status = e.code
+            body = e.read().decode()
+        
+        try:
+            result = json.loads(body)
+        except json.JSONDecodeError:
+            result = body
 
-            if status != expected_status:
-                FAIL += 1
-                msg = f"[FAIL] {method} {path} - Expected {expected_status}, got {status} ({elapsed}ms)"
-                ERRORS.append(msg)
-                print(f"  [FAIL] {method} {path} - Expected {expected_status}, got {status} ({elapsed}ms)")
-                return None
+        if status != expected_status:
+            FAIL += 1
+            msg = f"[FAIL] {method} {path} - Expected {expected_status}, got {status} ({elapsed}ms)"
+            ERRORS.append(msg)
+            print(f"  [FAIL] {method} {path} - Expected {expected_status}, got {status} ({elapsed}ms)")
+            return None
 
-            if validate and not validate(result):
-                FAIL += 1
-                msg = f"[FAIL] {method} {path} - Validation failed. Response: {json.dumps(result, indent=2)[:200]}"
-                ERRORS.append(msg)
-                print(f"  [FAIL] {method} {path} - Validation failed ({elapsed}ms)")
-                return None
+        if validate and not validate(result):
+            FAIL += 1
+            msg = f"[FAIL] {method} {path} - Validation failed. Response: {json.dumps(result, indent=2)[:200]}"
+            ERRORS.append(msg)
+            print(f"  [FAIL] {method} {path} - Validation failed ({elapsed}ms)")
+            return None
 
-            PASS += 1
-            print(f"  [PASS] {method} {path} ({elapsed}ms)")
-            return result
-    except urllib.error.HTTPError as e:
-        body = e.read().decode()
-        FAIL += 1
-        msg = f"[FAIL] {method} {path} - HTTP {e.code}: {body[:200]}"
-        ERRORS.append(msg)
-        print(f"  [FAIL] {method} {path} - HTTP {e.code} ({body[:100]})")
-        return None
+        PASS += 1
+        print(f"  [PASS] {method} {path} ({elapsed}ms)")
+        return result
     except Exception as e:
         FAIL += 1
         msg = f"[FAIL] {method} {path} - Exception: {str(e)}"
@@ -155,9 +154,16 @@ def main():
         model_names = [m['name'] for m in models_result]
         print(f"    -> Found {len(models_result)} model(s): {model_names}")
 
-    test("Select model", "POST", "/api/ollama/models/select", 200,
-         data={"model_name": "llama3.1"},
-         validate=lambda r: "message" in r and "selected" in r["message"])
+    # Dynamically select first available model, or expect 404 if none match
+    if ollama_available and models_result and len(models_result) > 0:
+        first_model = models_result[0]['name']
+        test("Select model", "POST", "/api/ollama/models/select", 200,
+             data={"model_name": first_model},
+             validate=lambda r: "message" in r and "selected" in r["message"])
+    else:
+        # Our fix: model selection returns 404 when Ollama unavailable (Issue #5)
+        test("Select model (unavailable)", "POST", "/api/ollama/models/select", 404,
+             data={"model_name": "llama3.1"})
 
     if ollama_available:
         test("Pull model request", "POST", "/api/ollama/pull", 200,

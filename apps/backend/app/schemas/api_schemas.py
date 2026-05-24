@@ -11,11 +11,23 @@ class DataSourceCreate(BaseModel):
     config: Optional[dict] = None
 
 
+class DataSourceUpdate(BaseModel):
+    name: Optional[str] = None
+    source_type: Optional[str] = None
+    connection_string: Optional[str] = None
+    file_path: Optional[str] = None
+    config: Optional[dict] = None
+    is_connected: Optional[bool] = None
+
+
 class DataSourceResponse(BaseModel):
     id: int
     name: str
     source_type: str
     is_connected: bool
+    connection_string: Optional[str] = None
+    file_path: Optional[str] = None
+    config: Optional[dict] = None
     created_at: datetime
 
     class Config:
@@ -25,6 +37,11 @@ class DataSourceResponse(BaseModel):
 class PipelineCreate(BaseModel):
     data_source_id: int
     name: str
+
+
+class PipelineUpdate(BaseModel):
+    name: Optional[str] = None
+    data_source_id: Optional[int] = None
 
 
 class PipelineResponse(BaseModel):
@@ -48,6 +65,7 @@ class QueryRequest(BaseModel):
     query: str
     traversal_depth: int = Field(default=2, ge=1, le=10)
     model: Optional[str] = None
+    retry: bool = Field(default=False, description="If true, performs a broader re-search when no graph data found")
 
 
 class QueryResponse(BaseModel):
@@ -56,6 +74,8 @@ class QueryResponse(BaseModel):
     retrieved_context: Optional[list] = None
     execution_time_ms: float
     pipeline_steps: list = []
+    graph_found: bool = True
+    followup_suggestion: Optional[str] = None
 
 
 class OllamaModelInfo(BaseModel):
@@ -72,6 +92,12 @@ class OllamaModelInfo(BaseModel):
 class ModelSelectRequest(BaseModel):
     model_config = {'protected_namespaces': ()}
     model_name: str
+
+
+class ChatRequest(BaseModel):
+    model_config = {'protected_namespaces': ()}
+    message: str
+    model: Optional[str] = None
 
 
 class SystemMetricsResponse(BaseModel):

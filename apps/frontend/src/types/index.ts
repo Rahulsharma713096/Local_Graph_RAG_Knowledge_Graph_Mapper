@@ -64,12 +64,25 @@ export interface QueryResult {
   retrieved_context?: unknown[];
   execution_time_ms: number;
   pipeline_steps: PipelineStep[];
+  graph_found?: boolean;
+  followup_suggestion?: string;
+  timeline?: TimelineEntry[];
 }
 
 export interface PipelineStep {
   step: string;
   status: 'running' | 'completed' | 'failed';
   error?: string;
+  buffering?: boolean;
+  buffering_detail?: string;
+}
+
+export interface TimelineEntry {
+  step: string;
+  status: string;
+  duration_ms: number;
+  timestamp?: number;
+  detail?: string;
 }
 
 export interface SystemMetrics {
@@ -80,6 +93,26 @@ export interface SystemMetrics {
   gpu_memory?: number;
   neo4j_heap_usage?: number;
   active_pipelines: number;
+  disk_usage?: number;
+  process_count?: number;
+}
+
+export interface HistoricalMetric {
+  cpu_usage: number;
+  ram_usage: number;
+  gpu_usage?: number | null;
+  active_pipelines: number;
+  recorded_at: string;
+}
+
+export interface OllamaBenchmark {
+  name: string;
+  speed_score: number;
+  context_size: number;
+  vram_estimate: string;
+  eval_count: number;
+  total_duration_ns: number;
+  rag_suitability: number;
 }
 
 export interface HealthStatus {
@@ -96,6 +129,20 @@ export interface QueryHistoryItem {
   execution_time_ms?: number;
   status: string;
   created_at: string;
+}
+
+export interface DirEntry {
+  name: string;
+  path: string;
+  type: 'file' | 'directory' | 'drive';
+  size?: number;
+  size_display?: string;
+}
+
+export interface BrowseResult {
+  entries: DirEntry[];
+  current_path: string;
+  parent_path?: string;
 }
 
 export type TabId = 'architecture' | 'pipeline' | 'graph' | 'ollama' | 'query' | 'dashboard';

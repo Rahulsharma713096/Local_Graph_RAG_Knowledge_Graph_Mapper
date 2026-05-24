@@ -1,5 +1,3 @@
-version: "3.9"
-
 services:
   neo4j:
     image: neo4j:5-community
@@ -20,11 +18,12 @@ services:
       interval: 15s
       timeout: 10s
       retries: 10
+    restart: unless-stopped
 
   backend:
     build:
-      context: ..
-      dockerfile: docker/Dockerfile.backend
+      context: ../apps/backend
+      dockerfile: ../../docker/Dockerfile.backend
     container_name: graphrag-backend
     ports:
       - "8000:8000"
@@ -36,17 +35,17 @@ services:
       - DATABASE_URL=sqlite:///./data/graphrag.db
       - ENVIRONMENT=production
     volumes:
-      - ../data:/app/data
-      - ../apps/backend:/app
+      - backend_data:/app/data
+    # Backend handles Neo4j absence gracefully via SQLite/JSON fallback
     depends_on:
       neo4j:
-        condition: service_healthy
+        condition: service_started
     restart: unless-stopped
 
   frontend:
     build:
-      context: ..
-      dockerfile: docker/Dockerfile.frontend
+      context: ../apps/frontend
+      dockerfile: ../../docker/Dockerfile.frontend
     container_name: graphrag-frontend
     ports:
       - "3000:80"
@@ -61,6 +60,9 @@ services:
       - "11434:11434"
     volumes:
       - ollama_data:/root/.ollama
+    # GPU acceleration requires nvidia-container-toolkit on Linux
+    # or WSL2 backend with NVIDIA drivers on Windows
+    # If unavailable, Ollama will run on CPU
     deploy:
       resources:
         reservations:
@@ -75,3 +77,4 @@ volumes:
   neo4j_logs:
   neo4j_import:
   ollama_data:
+  backend_data:

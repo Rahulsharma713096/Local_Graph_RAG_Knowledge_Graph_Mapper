@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Network, Search, ZoomIn, ZoomOut, RotateCw, Code2, BarChart3, Maximize2 } from 'lucide-react';
+import { Network, Search, ZoomIn, ZoomOut, RotateCw, Code2, BarChart3, Maximize2, Trash2 } from 'lucide-react';
 import cytoscape from 'cytoscape';
 import * as api from '../lib/api';
 import type { GraphData } from '../types';
@@ -16,6 +17,7 @@ export function GraphView() {
   const [cypherResult, setCypherResult] = useState<string>('');
   const [selectedNode, setSelectedNode] = useState<any>(null);
   const [showCypher, setShowCypher] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     loadGraph();
@@ -68,20 +70,8 @@ export function GraphView() {
     ];
 
     if (elements.length === 0) {
-      // Add demo elements if empty
-      elements.push(
-        { data: { id: 'customer1', label: 'Alice Johnson', type: 'Customer' }, classes: 'customer' },
-        { data: { id: 'customer2', label: 'Bob Smith', type: 'Customer' }, classes: 'customer' },
-        { data: { id: 'product1', label: 'Laptop Pro', type: 'Product' }, classes: 'product' },
-        { data: { id: 'product2', label: 'Wireless Mouse', type: 'Product' }, classes: 'product' },
-        { data: { id: 'order1', label: 'ORD-001', type: 'Order' }, classes: 'order' },
-        { data: { id: 'supplier1', label: 'TechSupply Co', type: 'Supplier' }, classes: 'supplier' },
-        { data: { id: 'order1-customer1', source: 'order1', target: 'customer1', label: 'PLACED_BY' } },
-        { data: { id: 'order1-product1', source: 'order1', target: 'product1', label: 'INCLUDES' } },
-        { data: { id: 'customer1-product1', source: 'customer1', target: 'product1', label: 'PURCHASED' } },
-        { data: { id: 'customer2-product2', source: 'customer2', target: 'product2', label: 'PURCHASED' } },
-        { data: { id: 'supplier1-product1', source: 'supplier1', target: 'product1', label: 'SUPPLIES' } },
-      );
+      // No graph data available - don't add hardcoded demo data
+      // The empty state message will be displayed below the canvas
     }
 
     cyInstance.current = cytoscape({
@@ -144,9 +134,6 @@ export function GraphView() {
           style: {
             'border-width': 3,
             'border-color': '#a5b4fc',
-            'shadow-blur': 20,
-            'shadow-color': '#6366f1',
-            'shadow-opacity': 0.5,
           },
         },
       ],
@@ -184,6 +171,19 @@ export function GraphView() {
   const handleZoomOut = () => cyInstance.current?.zoom(cyInstance.current.zoom() / 1.3);
   const handleFit = () => cyInstance.current?.fit(undefined, 50);
   const handleRefresh = () => loadGraph();
+
+  const handleClearGraph = async () => {
+    if (!confirm('Are you sure you want to clear ALL graph data? This cannot be undone.')) return;
+    setLoading(true);
+    try {
+      await api.clearGraphData();
+      await loadGraph();
+    } catch (e: any) {
+      console.error('Failed to clear graph', e);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const handleCypherExecute = async () => {
     try {
@@ -245,6 +245,10 @@ export function GraphView() {
               <button onClick={handleRefresh} className="btn-ghost p-2" title="Refresh">
                 <RotateCw className="w-4 h-4" />
               </button>
+              <div className="w-px h-5 bg-surface-700" />
+              <button onClick={handleClearGraph} className="btn-ghost p-2 text-red-400 hover:text-red-300 hover:bg-red-500/10" title="Clear All Graph Data">
+                <Trash2 className="w-4 h-4" />
+              </button>
             </div>
 
             <div className="flex items-center gap-2 flex-1 max-w-md mx-4">
@@ -270,12 +274,18 @@ export function GraphView() {
           {/* Graph Canvas */}
           <div className="glass-card overflow-hidden" style={{ height: '500px' }}>
             <div ref={cyRef} id="cy" className="w-full h-full" />
-            {(!graphData || (graphData.nodes.length === 0 && !cyInstance.current)) && (
+            {(!graphData || (graphData.nodes.length === 0 && (!cyInstance.current || cyInstance.current.nodes().length === 0))) && (
               <div className="flex items-center justify-center h-full">
                 <div className="text-center text-gray-500">
                   <Network className="w-12 h-12 mx-auto mb-3 opacity-50" />
                   <p>No graph data available</p>
-                  <p className="text-xs mt-1">Run a pipeline or seed demo data to populate the graph</p>
+                  <p className="text-xs mt-1">Upload a CSV file from the Dashboard, then run a pipeline to populate the graph</p>
+                  <button
+                    onClick={() => navigate('/dashboard')}
+                    className="mt-3 btn-primary text-xs py-1.5"
+                  >
+                    Go to Dashboard
+                  </button>
                 </div>
               </div>
             )}

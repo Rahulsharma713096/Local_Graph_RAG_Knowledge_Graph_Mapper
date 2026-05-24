@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import type {
-  TabId, GraphData, OllamaModel, SystemMetrics,
-  HealthStatus, DataSource, Pipeline, QueryHistoryItem,
+  TabId, GraphData, OllamaModel, OllamaBenchmark, SystemMetrics,
+  HealthStatus, DataSource, Pipeline, QueryHistoryItem, HistoricalMetric,
 } from '../types';
 
 interface AppState {
@@ -35,6 +35,21 @@ interface AppState {
   streamBuffer: string;
   appendStream: (chunk: string) => void;
   clearStream: () => void;
+
+  // Benchmarks
+  benchmarks: Record<string, OllamaBenchmark>;
+  setBenchmark: (model: string, benchmark: OllamaBenchmark) => void;
+
+  // Historical Metrics (for Dashboard charts)
+  historicalMetrics: HistoricalMetric[];
+  setHistoricalMetrics: (metrics: HistoricalMetric[]) => void;
+
+  // WebSocket real-time
+  wsConnected: boolean;
+  setWsConnected: (connected: boolean) => void;
+  wsReconnectAttempts: number;
+  incrementWsReconnect: () => void;
+  resetWsReconnect: () => void;
 }
 
 export const useAppStore = create<AppState>((set) => ({
@@ -65,4 +80,21 @@ export const useAppStore = create<AppState>((set) => ({
   streamBuffer: '',
   appendStream: (chunk) => set((s) => ({ streamBuffer: s.streamBuffer + chunk })),
   clearStream: () => set({ streamBuffer: '' }),
+
+  // Benchmarks
+  benchmarks: {},
+  setBenchmark: (model, benchmark) => set((s) => ({
+    benchmarks: { ...s.benchmarks, [model]: benchmark },
+  })),
+
+  // Historical Metrics
+  historicalMetrics: [],
+  setHistoricalMetrics: (metrics) => set({ historicalMetrics: metrics }),
+
+  // WebSocket
+  wsConnected: false,
+  setWsConnected: (connected) => set({ wsConnected: connected }),
+  wsReconnectAttempts: 0,
+  incrementWsReconnect: () => set((s) => ({ wsReconnectAttempts: s.wsReconnectAttempts + 1 })),
+  resetWsReconnect: () => set({ wsReconnectAttempts: 0 }),
 }));
